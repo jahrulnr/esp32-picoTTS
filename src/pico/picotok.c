@@ -336,7 +336,7 @@ static void tok_getParamIntVal (MarkupParams params, picoos_uchar paramId[], pic
     while ((i < MAX_NR_MARKUP_PARAMS) && !tok_strEqual(paramId,params[i].paramId)) {
         i++;
     }
-    if ((i < MAX_NR_MARKUP_PARAMS)) {
+    if ((i < MAX_NR_MARKUP_PARAMS) && (params[i].paramId[0] != 0)) {
         (*paramVal) = picoos_atoi((picoos_char*)params[i].paramVal);
         (*paramFound) = TRUE;
     } else {
@@ -351,10 +351,10 @@ static void tok_getParamStrVal (MarkupParams params, picoos_uchar paramId[], pic
 {
     int i=0;
 
-    while ((i < MAX_NR_MARKUP_PARAMS) &&  !tok_strEqual(paramId,params[i].paramId)) {
+    while ((i < MAX_NR_MARKUP_PARAMS) && (params[i].paramId[0] != 0) && !tok_strEqual(paramId,params[i].paramId)) {
         i++;
     }
-    if (i < MAX_NR_MARKUP_PARAMS) {
+    if ((i < MAX_NR_MARKUP_PARAMS) && (params[i].paramId[0] != 0)) {
         picoos_strcpy((picoos_char*)paramStrVal, (picoos_char*)params[i].paramVal);
         (*paramFound) = TRUE;
     } else {

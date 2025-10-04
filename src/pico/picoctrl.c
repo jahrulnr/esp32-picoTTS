@@ -504,7 +504,7 @@ typedef struct picoctrl_engine {
     picodata_CharBuffer cbIn, cbOut;
 } picoctrl_engine_t;
 
-
+#ifndef MAGIC_MASK
 #define MAGIC_MASK 0x5069436F  /* PiCo */
 
 #define SET_MAGIC_NUMBER(eng) \
@@ -512,6 +512,7 @@ typedef struct picoctrl_engine {
 
 #define CHECK_MAGIC_NUMBER(eng) \
     ((eng)->magic == (((picoos_uint32) (uintptr_t) (eng)) ^ MAGIC_MASK))
+#endif
 
 /**
  * performs an engine reset

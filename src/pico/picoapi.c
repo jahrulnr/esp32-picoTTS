@@ -38,6 +38,7 @@ extern "C" {
 /* System-level API functions                                                 */
 /* ****************************************************************************/
 
+#ifndef MAGIC_MASK
 #define MAGIC_MASK 0x5069636F  /* Pico */
 
 #define SET_MAGIC_NUMBER(sys) \
@@ -45,7 +46,7 @@ extern "C" {
 
 #define CHECK_MAGIC_NUMBER(sys) \
     ((sys)->magic == (((picoos_uint32) (uintptr_t) (sys)) ^ MAGIC_MASK))
-
+#endif
 
 
 /* *** Auxiliary routines (may also be called from picoextapi.c) **************/

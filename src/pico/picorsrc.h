@@ -210,7 +210,7 @@ typedef struct picorsrc_resource {
     picoknow_KnowledgeBase kbList;
 } picorsrc_resource_t;
 
-
+#ifndef MAGIC_MASK
 #define MAGIC_MASK 0x7049634F  /* pIcO */
 
 #define SET_MAGIC_NUMBER(res) \
@@ -218,7 +218,7 @@ typedef struct picorsrc_resource {
 
 #define CHECK_MAGIC_NUMBER(res) \
     ((res)->magic == (((picoos_uint32) (uintptr_t) (res)) ^ MAGIC_MASK))
-
+#endif
 
 static picorsrc_Resource picorsrc_newResource(picoos_MemoryManager mm)
 {
