@@ -165,6 +165,7 @@ static void esp_pico_run(void *)
             state = WAITING_FOR_OUTPUT;
         }
       }
+      taskYIELD();
     }
 
     switch (state)
@@ -189,8 +190,8 @@ static void esp_pico_run(void *)
             pico_getData(picoEngine, outbuf, sizeof(outbuf), &bytes, &type);
           if (bytes > 0)
             outputCb(outbuf, bytes/2);
-            // small delay to feed wdt
-            taskYIELD();
+          // small delay to feed wdt
+          taskYIELD();
         } while (status == PICO_STEP_BUSY);
         if (status != PICO_STEP_IDLE)
         {
@@ -205,6 +206,7 @@ static void esp_pico_run(void *)
         break;
        }
     }
+    taskYIELD();
   }
   ESP_LOGI(tag, "Exiting task");
   xSemaphoreGive(exitLock);
