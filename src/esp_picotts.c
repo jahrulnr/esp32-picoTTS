@@ -214,6 +214,13 @@ static void esp_pico_run(void *)
     errorCb();
 }
 
+void picotts_pause() {
+  if (picoTask != NULL) vTaskSuspend(picoTask);
+}
+
+void picotts_resume() {
+  if (picoTask != NULL) vTaskResume(picoTask);
+}
 
 static void esp_pico_cleanup(void)
 {

@@ -42,6 +42,9 @@ bool picotts_init(unsigned prio, picotts_output_fn output_cb, int core);
  */
 void picotts_add(const char *txt, unsigned len);
 
+void picotts_pause();
+void picotts_resume();
+
 /**
  * Stops the TTS engine task and frees the used memory resources.
  * Call @c picotts_init() again to reinitialise, if needed.
